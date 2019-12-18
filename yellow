@@ -1,0 +1,50 @@
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Write a description of class yellow here.
+ * 
+ * @author (audrey) 
+ * @version (12-17-19)
+ */
+public class yellow extends Actor implements Comparable<boardPiece>
+{
+    /**
+     * Act - do whatever the yellow wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    private int col;
+    private final int TEAM = 1;
+    private static int count;// used to tell how many of the same team are next to each other
+    
+    public yellow()
+    {
+    }//end red 0 args
+
+    public int getTeam()
+    {
+        return TEAM;
+    }//end getTeam
+    public int compareTo(boardPiece team)
+    {
+        if (TEAM == team.getHor()) 
+        {
+            return 2;
+        }//end if
+        else if (TEAM == team.getDia())
+        {
+            return 2;
+        }//end else if
+        else if(TEAM == team.getVer())
+        {
+            return 2;
+        }//end else if
+        else
+        {
+        return 100;
+        }//end else
+    };// used to check relation to other pieces on board
+    
+    
+     
+       
+}
