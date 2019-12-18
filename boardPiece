@@ -1,0 +1,183 @@
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Write a description of class boardPiece here.
+ * 
+ * @author ( Audrey ) 
+ * @version (12-17-19)
+ */
+public class boardPiece extends Actor
+{
+    int[][] places = {{0,0,0,0,0,0,0},
+                      {0,0,0,0,0,0,0},
+                      {0,0,0,0,0,0,0},
+                      {0,0,0,0,0,0,0},
+                      {0,0,0,0,0,0,0},
+                      {0,0,0,0,0,0,0}};
+    
+    private int team, row, col, x, y;
+    private boolean hasWon = false;
+    public boardPiece()
+    {
+    }//end boardPiece  constructor
+    public int getTeam()
+    {
+        return team;
+    }//end getTeam
+    public int getRow()
+    {
+        return row;
+    }//end getRow
+    public int getCol()
+    {
+        return col;
+    }//end getCol
+    public boolean getHasWon()
+    {
+        return hasWon;
+    }//end getHasWonr
+    public void setTeam(int team)
+    {
+        this.team = team;
+    }//end setTeam
+    public void setRow(int row)
+    {
+        this.row = row;
+    }//end getTeam
+    public void setCol(int col)
+    {
+        this.col = col;
+    }//end getTeam
+    public void setHasWon(boolean hasWon)
+    {
+        this.hasWon = hasWon;
+    }//end setHasWon
+    public String toString()
+    {
+        String output = "";
+        for(int r = 0; r < places.length; r ++)
+        {
+            for(int c = 0; c < places[5].length; c++)
+            {
+                output.concat( String.valueOf(places[r][c])) ;
+            }//end inner for
+            output.concat( "\n");
+        }//end for
+        return output;
+    }//end toString
+    /*
+    public void setCol(int col)
+    {
+        col = this.col;
+    }//end setCollum *this should get the column number depending on what chosen 
+
+    public void setRow()
+    {
+     for(int i = 7; i > 0; i--)
+     {
+     if(places[i][col] == 0) 
+     {
+       row = i;
+     }//end if
+     }//end for
+    
+    }//end setRow *this should set the row depending on avalibility*/
+    
+    //brain method for setPlaces
+    public void setPlaces(int team, int col)
+    {
+     this.team = team;
+     this.col = col;
+     boolean placed = false;
+     int spot = 5;
+     
+     while(spot > -1 && placed != true)
+     {
+     if(places[spot][col] == 0) 
+     {
+       row = spot;
+       placed = true;
+       places[row][col] = team; 
+     }//end if
+     else
+     {
+         spot --;
+     }//end else
+     }//end while
+    
+        
+    }//end setPlaces 
+    //this is used to go to the last row and check if it is full. 
+    //If it is, it will move up a row
+    //if it is not it will be placed
+    public int getX()
+    {
+        int num = 90;
+        for(int i = 0; i < 8; i++)
+        {
+            if(col == i)
+            {
+                x = num;
+            }
+            num += 70;
+        }
+        return x;
+    }//end getX ** used to place the images on the board, where to place on X-coordinate
+    public int getY()
+    {
+        int num = 65;
+        for(int i = 0; i < 7 || row == i; i++)
+        {
+            if(row == i)
+            {
+                y = num;
+            }
+            else
+            num += 70;
+        }
+        return y;
+    }//end getY ** used to place the images on the board, where to place on Y-coordinate
+
+    public int getVer()
+    {
+        if(col<6 && col >-1)
+        return places[row][col+1];
+        else
+        return 0;
+    }//end getVer
+    public int getHor()
+    {
+        if(row < 5 && row>-1)
+        return places[row+1][col];
+        else
+        return 0;
+    }//end getHor
+    public int getDia()
+    {
+        if((col<6 && col >-1) && (row < 5 && row>-1))
+        return places[row+1][col+1];
+        else
+        return 0;
+        
+    }//end getDia
+   /* public boolean checkWin(int count)
+    {
+     this.count = count;
+     counter = 0;
+    if(count >= 8)
+        {
+        for(int r = 0; r < places.length; r ++)
+        {
+            for(int c = 0; c < places[5].length; c++)
+            {
+               if(red.compareTo(boardPiece.getLoc()))
+               {
+                   
+                }//end inner if
+               
+            }//end inner for
+            
+        }//end for
+        }//end if
+    }//end checkWin */
+}
