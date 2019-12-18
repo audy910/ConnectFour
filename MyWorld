@@ -1,0 +1,280 @@
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.ArrayList;
+/**
+ * Write a description of class MyWorld here.
+ * 
+ * @author (audrey) 
+ * @version (12-17-19)
+ */
+public class MyWorld extends World
+{
+    private int count = 0, ycount = 0, rcount = 0, counter = 0, winner = 0;
+        //calls yellow board
+        boardPiece board = new boardPiece();
+        ArrayList<red> redNames = new ArrayList<red>();        
+        ArrayList<yellow> yellowNames = new ArrayList<yellow>();
+
+    /**
+     * Constructor for objects of class MyWorld.
+     * 
+     */
+    public MyWorld()
+    {    
+        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+        super(600, 450, 1);
+        start();
+        act();
+        
+    }
+
+    private void start()
+    {
+        //add the board
+        addObject(board, 300, 240);
+        yellowNames.add(new yellow());
+        addObject(yellowNames.get(0), 0, 0);
+        ycount++;
+        redNames.add(new red());
+        addObject(redNames.get(0), 0, 0);
+        rcount++;
+        yellowNames.add(new yellow());
+        addObject(yellowNames.get(0), 0, 0);
+        ycount++;
+        redNames.add(new red());
+        addObject(redNames.get(0), 0, 0);
+        rcount++;
+
+    }
+    public void act()
+    {
+        boolean win = false, yeven = false;
+
+        Greenfoot.delay(5);
+        
+        if(rcount >= 4)
+        {
+           for(int r = 0; r < 4; r ++)
+           {
+
+               counter += redNames.get(rcount-1).compareTo(board);
+            
+           }//end for
+        
+           if((count/4) == 2)
+           {
+               win = true;
+               winner = 2;
+              // System.out.println("red wins!");
+           }
+           else
+           {
+                win = false;
+           }//end else
+        
+        
+        }//end if ** used to check for winner
+        if(ycount >= 4)
+        {
+            for(int r = 0; r < 4; r ++)
+            {
+
+               counter += yellowNames.get(ycount-1).compareTo(board);
+            
+            }//end for
+        
+            if((count/4) == 2)
+            {
+                win = true;
+                winner = 1;
+                //System.out.println("yellow wins!");
+            }//end inner if
+            else
+            {
+            win = false;
+            }//end else
+
+        }//end if
+
+        
+        //used to check red or yellow's turn
+        if(count%2 == 0)
+        {
+            yeven = true;
+        }//end if
+        else
+        {
+            yeven = false;
+        }//end else
+        /*
+        if(Greenfoot.isKeyDown("0"))
+        {
+            yellowNames.add(new yellow());
+            addObject(yellowNames.get(0), 0, 0);
+            ycount++;
+            redNames.add(new red());
+            addObject(redNames.get(0), 0, 0);
+            rcount++;
+        }//end if ** this is used to initiliaze the first instance (the rest are -1 and 0-1 will give error)
+        */
+        /*
+         * the following if statments handle the number keys
+         * these will interact with the boardPiece class 
+         * set the col based on key pressed 
+         * create new object
+         */
+        if(Greenfoot.isKeyDown("1"))
+        {
+            if((yeven == true) || (count == 0))
+            {
+                //System.out.println("does not");
+                board.setPlaces(1,0);
+                yellowNames.add(new yellow());
+                addObject(yellowNames.get(ycount-1), board.getX(), board.getY());
+                ycount++;
+                count++;
+            
+            } //end inner else
+            else
+            {
+                board.setPlaces(2,0);
+                redNames.add(new red());
+                addObject(redNames.get(rcount-1), board.getX(), board.getY());
+                rcount++;
+                count++;
+            }//end else
+        }//end if
+        if(Greenfoot.isKeyDown("2"))
+        {
+            if((yeven == true) || (count == 0))
+            {
+                board.setPlaces(1, 1);
+                yellowNames.add(new yellow());
+                addObject(yellowNames.get(ycount-1), board.getX(), board.getY());
+                ycount++;
+                count++;
+            }//end inner else
+            else
+            {
+            board.setPlaces(2, 1);
+            redNames.add(new red());
+            addObject(redNames.get(rcount-1), board.getX(), board.getY());
+            rcount++;
+            count++;
+            }//end else
+        }//end if
+        if(Greenfoot.isKeyDown("3"))
+        {
+            if((yeven == true) || (count == 0))
+            {
+                board.setPlaces(1,2);
+                yellowNames.add(new yellow());
+                addObject(yellowNames.get(ycount-1), board.getX(), board.getY());
+                ycount++;
+                count++;
+            }//end inner if
+            else
+            {
+                board.setPlaces(2,2);
+                redNames.add(new red());
+                addObject(redNames.get(rcount-1), board.getX(), board.getY());
+                rcount++;
+                count++;
+            }//end else
+        }//end if
+        if(Greenfoot.isKeyDown("4") )
+        {
+            if((yeven == true) || (count == 0))
+            {
+                board.setPlaces(1,3);
+                yellowNames.add(new yellow());
+                addObject(yellowNames.get(ycount-1), board.getX(), board.getY());
+                ycount++;
+                count++;
+            }//end inner if
+            else
+            {
+                board.setPlaces(2,3);
+                redNames.add(new red());
+                addObject(redNames.get(rcount-1), board.getX(), board.getY());
+                rcount++;
+                count++;
+            }//end else
+        }//end if
+        if(Greenfoot.isKeyDown("5") )
+        {
+            if((yeven == true) || (count == 0))
+            {
+                board.setPlaces(1,4);
+                yellowNames.add(new yellow());
+                addObject(yellowNames.get(ycount-1), board.getX(), board.getY());
+                ycount++;
+                count++;
+            }//end inner if
+            else
+            {
+                board.setPlaces(2,4);
+                redNames.add(new red());
+                addObject(redNames.get(rcount-1), board.getX(), board.getY());
+                rcount++;
+                count++;
+            }//end else
+        }//end if
+
+        if(Greenfoot.isKeyDown("6") )
+        {
+            if((yeven == true) || (count == 0))
+            {
+                board.setPlaces(1,5);
+                yellowNames.add(new yellow());
+                addObject(yellowNames.get(ycount-1), board.getX(), board.getY());
+                ycount++;
+                count++;
+            }//end inner if
+            else
+            {
+                board.setPlaces(2,5);
+                redNames.add(new red());
+                addObject(redNames.get(rcount-1), board.getX(), board.getY());
+                rcount++;
+                count++;
+            }//end else
+        }//end if
+        if(Greenfoot.isKeyDown("7") )
+        {
+            if((yeven == true) || (count == 0))
+            {
+                board.setPlaces(1,6);
+                yellowNames.add(new yellow());
+                addObject(yellowNames.get(ycount-1), board.getX(), board.getY());
+                ycount++;
+                count++;
+            }//end inner if
+            else
+            {
+                board.setPlaces(2,6);
+                redNames.add(new red());
+                addObject(redNames.get(rcount-1), board.getX(), board.getY());
+                rcount++;
+                count++;
+            }//end else
+        }//end if
+        
+    }//end act
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
